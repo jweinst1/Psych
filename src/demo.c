@@ -1,38 +1,35 @@
+#define PY_SSIZE_T_CLEAN
 #include <Python.h>
+#include "structmember.h"
 
-static PyObject* print_message(PyObject* self, PyObject* args)
+static PyObject* psych_version(PyObject* self, PyObject *Py_UNUSED(ignored))
 {
-    const char* str_arg;
-    if(!PyArg_ParseTuple(args, "s", &str_arg)) {
-        puts("Could not parse the python arg!");
-        return NULL;
-    }
-#ifdef USE_PRINTER
-    printf("printer %s\n", str_arg);
+#ifdef PSYCH_VERSION
+    return Py_BuildValue("III", PSYCH_MAJOR_VERSION, PSYCH_MINOR_VERSION, PSYCH_PATCH_VERSION);
 #else
-    printf("msg %s\n", str_arg);
-#endif
-    // This can also be done with Py_RETURN_NONE
     Py_INCREF(Py_None);
     return Py_None;
+#endif
 }
-
+/**
+ * These are tool-util functions packaged with Royal
+ */
 static PyMethodDef myMethods[] = {
-    { "print_message", print_message, METH_VARARGS, "Prints a called string" },
+    { "version", psych_version, METH_NOARGS, "Returns a tuple representing the version of psych" },
     { NULL, NULL, 0, NULL }
 };
 
 // Our Module Definition struct
 static struct PyModuleDef myModule = {
     PyModuleDef_HEAD_INIT,
-    "DemoPackage",
+    "psych",
     "A demo module for python c extensions",
     -1,
     myMethods
 };
 
 // Initializes our module using our above struct
-PyMODINIT_FUNC PyInit_DemoPackage(void)
+PyMODINIT_FUNC PyInit_psych(void)
 {
     return PyModule_Create(&myModule);
 }
