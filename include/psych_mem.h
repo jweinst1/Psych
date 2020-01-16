@@ -79,5 +79,12 @@ typedef unsigned __int64 uint64_t;
                                        __FILE__, (unsigned)__LINE__) > 0) \
                                       assert(exp)
 #endif // MSC_VER
+
+#define PSYCH_GROW_OBJECT(type) \
+                type* data; \
+                size_t len; \
+                size_t cap
+
+
                      
 #endif // PSYCH_MEM_H

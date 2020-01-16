@@ -2,6 +2,11 @@
 #include <Python.h>
 #include "structmember.h"
 
+typedef struct {
+    PyObject_HEAD
+    psych_item_market_t market;
+} PsychItemMarketObject;
+
 static PyObject* psych_version(PyObject* self, PyObject *Py_UNUSED(ignored))
 {
 #ifdef PSYCH_VERSION
@@ -23,7 +28,7 @@ static PyMethodDef myMethods[] = {
 static struct PyModuleDef myModule = {
     PyModuleDef_HEAD_INIT,
     "psych",
-    "A demo module for python c extensions",
+    "Stock market modeling of the future",
     -1,
     myMethods
 };
