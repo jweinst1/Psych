@@ -20,8 +20,8 @@ typedef struct {
 } psych_item_order_queue_t;
 
 typedef struct {
-	const char* name;
-	double current_price;
+  const char* name;
+  double current_price;
   psych_item_order_queue_t buys;
   psych_item_order_queue_t sells;
 } psych_item_item_t;
@@ -52,5 +52,12 @@ typedef struct {
   unsigned votality;
   size_t turns;
 } psych_item_market_t;
+
+/// Init Help Types ////
+
+typedef struct {
+	double value;
+	const char* name;
+} psych_item_init_val_t;
 
 #endif // PSYCH_ITEM_MARKET_TYPES_H

@@ -1,5 +1,7 @@
 # src c make
 
+include_directories(${PROJECT_SOURCE_DIR}/include)
+
 set(PSYCH_CLIB_SOURCES
     psych_item_market.c
 )
