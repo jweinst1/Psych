@@ -1,3 +1,4 @@
+#include "unit_test_helpers.h"
 #include "psych_item_market.h"
 
 static const psych_item_init_val_t ITEM_LST1[] = {

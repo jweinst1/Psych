@@ -3,6 +3,14 @@
 
 #include "psych_mem.h"
 
+#ifndef PSYCH_ITEM_CUSTOMER_NAME_LEN
+#define PSYCH_ITEM_CUSTOMER_NAME_LEN 25
+#endif
+
+#ifndef PSYCH_ITEM_ITEM_NAME_LEN
+#define PSYCH_ITEM_ITEM_NAME_LEN 25
+#endif
+
 struct psych_item_customer_t;
 struct psych_item_item_t;
 
@@ -20,7 +28,7 @@ typedef struct {
 } psych_item_order_queue_t;
 
 typedef struct {
-  const char* name;
+  char name[PSYCH_ITEM_ITEM_NAME_LEN + 1];
   double current_price;
   psych_item_order_queue_t buys;
   psych_item_order_queue_t sells;
@@ -40,7 +48,7 @@ typedef struct {
 
 typedef struct {
   double cash;
-  const char* name;
+  char name[PSYCH_ITEM_CUSTOMER_NAME_LEN + 1];
   psych_item_positions_t posts;
 } psych_item_customer_t;
 
